@@ -1,0 +1,67 @@
+{
+    "app": {
+        "name": "MARSLOG",
+        "version": "1.0.0",
+        "title": "MARSLOG - Advanced Log Management System",
+        "description": "ClickHouse-based log management with AI-powered analysis"
+    },
+    "ui": {
+        "theme": "tailwind",
+        "charts": {
+            "library": "chartjs",
+            "default_type": "line",
+            "colors": {
+                "primary": "#3B82F6",
+                "secondary": "#6B7280", 
+                "success": "#10B981",
+                "warning": "#F59E0B",
+                "danger": "#EF4444",
+                "info": "#06B6D4"
+            }
+        },
+        "dashboard": {
+            "refresh_interval": 30000,
+            "auto_refresh": true,
+            "real_time": true
+        }
+    },
+    "api": {
+        "base_url": "http://localhost:5000",
+        "endpoints": {
+            "logs": "/api/logs",
+            "metrics": "/api/metrics", 
+            "alerts": "/api/alerts",
+            "dashboard": "/api/dashboard",
+            "search": "/api/search"
+        },
+        "timeout": 30000
+    },
+    "features": {
+        "real_time_logs": true,
+        "log_search": true,
+        "metrics_dashboard": true,
+        "alerting": true,
+        "ai_classification": true,
+        "log_patterns": true,
+        "system_monitoring": true,
+        "reports": true
+    },
+    "pagination": {
+        "default_limit": 50,
+        "max_limit": 1000,
+        "page_sizes": [25, 50, 100, 250, 500]
+    },
+    "date_ranges": {
+        "default": "1h",
+        "options": [
+            {"label": "Last 15 minutes", "value": "15m"},
+            {"label": "Last 30 minutes", "value": "30m"},
+            {"label": "Last 1 hour", "value": "1h"},
+            {"label": "Last 4 hours", "value": "4h"},
+            {"label": "Last 12 hours", "value": "12h"},
+            {"label": "Last 24 hours", "value": "1d"},
+            {"label": "Last 7 days", "value": "7d"},
+            {"label": "Last 30 days", "value": "30d"}
+        ]
+    }
+}

@@ -1,0 +1,177 @@
+/* ==========================================================================
+   MARSLOG DESIGN SYSTEM – Core Stylesheet
+   File: marslog.css
+   Version: 1.0.0
+   Author: somkid & ChatGPT
+   ========================================================================== */
+
+/* --------
+   Theme Variables
+   -------- */
+:root {
+  --mars-primary: #8b5cf6;        /* Purple 500 */
+  --mars-primary-dark: #6d28d9;   /* Purple 700 */
+  --mars-primary-light: #c4b5fd;  /* Purple 300 */
+  --mars-bg: #0f0f23;             /* Main dark background */
+  --mars-surface: rgba(255,255,255,0.04); /* Card / table surface */
+  --mars-border: rgba(255,255,255,0.1);
+  --mars-text: #f9fafb;           /* Light text */
+  --mars-success: #10b981;
+  --mars-error: #ef4444;
+  --mars-warning: #f59e0b;
+}
+
+/* --------
+   Base
+   -------- */
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  color: var(--mars-text);
+  background: var(--mars-bg);
+  line-height: 1.6;
+}
+
+/* --------
+   Glassmorphism Card
+   -------- */
+.glass-effect {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background-color: var(--mars-surface);
+  border: 1px solid var(--mars-border);
+  border-radius: 1rem;
+}
+
+/* --------
+   Fade‑in Animation
+   -------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn .4s ease-out both; }
+
+/* --------
+   Space Gradient Background
+   -------- */
+.bg-space-gradient {
+  background: linear-gradient(135deg,#0f0f23 0%,#1a1a2e 25%,#16213e 50%,#0f0f23 100%);
+}
+
+/* --------
+   Buttons
+   -------- */
+.btn,
+.mars-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  background-image: linear-gradient(90deg,var(--mars-primary) 0%,var(--mars-primary-dark) 100%);
+  color: var(--mars-text);
+  transition: filter .2s ease;
+  cursor: pointer;
+}
+.btn:hover,
+.mars-btn:hover { filter: brightness(1.15); }
+.btn:disabled,
+.mars-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* --------
+   Status Pills
+   -------- */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  height: 24px;
+  border-radius: 9999px;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+.status-online  { background: var(--mars-success); color: var(--mars-bg); }
+.status-offline { background: var(--mars-error);   color: #ffffff; }
+
+/* --------
+   Table Styling (Monitoring List)
+   -------- */
+.mars-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 6px;           /* row gap */
+}
+.mars-table th {
+  padding: 14px 18px;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  background: var(--mars-surface);
+  border-bottom: 1px solid var(--mars-border);
+  color: var(--mars-text);
+}
+.mars-table td {
+  padding: 14px 18px;
+  background: var(--mars-surface);
+  border-bottom: 1px solid var(--mars-border);
+  color: var(--mars-text);
+}
+.mars-table tr:hover td {
+  background: rgba(139,92,246,.07);
+}
+
+/* --------
+   Form Inputs
+   -------- */
+.mars-input {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--mars-border);
+  border-radius: .5rem;
+  padding: .5rem .75rem;
+  transition: border .15s ease, box-shadow .15s ease;
+  color: var(--mars-text);
+}
+.mars-input::placeholder { color: #9ca3af; }
+.mars-input:focus {
+  outline: none;
+  border-color: var(--mars-primary);
+  box-shadow: 0 0 0 2px rgba(139,92,246,.4);
+}
+
+/* --------
+   SweetAlert2 Overrides
+   -------- */
+.swal2-popup {
+  background: var(--mars-bg) !important;
+  color: var(--mars-text) !important;
+  border: 1px solid var(--mars-border) !important;
+  backdrop-filter: blur(20px);
+}
+.swal2-confirm { 
+  background: var(--mars-primary) !important; 
+  color: var(--mars-text) !important;
+  border-radius: .5rem !important;
+}
+.swal2-cancel,
+.swal2-deny  { 
+  background: var(--mars-error) !important; 
+  color: #ffffff !important; 
+  border-radius: .5rem !important;
+}
+
+/* --------
+   Utilities
+   -------- */
+.scrollbar-hide::-webkit-scrollbar { display: none; }  /* hide scrollbar */
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+.pointer-events-none { pointer-events:none; }
+
+/* ==========================================================================
+   End of file
+   ========================================================================== */

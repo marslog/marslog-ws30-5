@@ -1,0 +1,112 @@
+{
+    "drain3_config": {
+        "profiling_enabled": false,
+        "profiling_report_sec": 60,
+        "snapshot_interval_sec": 30,
+        "snapshot_compress": true,
+        "max_node_depth": 6,
+        "max_children": 100,
+        "max_clusters": 1000,
+        "extra_delimiters": ["=", ":", ",", ";"],
+        "sim_th": 0.4,
+        "depth": 4
+    },
+    "log_classification": {
+        "categories": [
+            "system",
+            "application", 
+            "security",
+            "network",
+            "database",
+            "authentication",
+            "error",
+            "warning",
+            "info",
+            "debug"
+        ],
+        "patterns": {
+            "error": [
+                "error",
+                "exception",
+                "failed",
+                "failure",
+                "critical",
+                "fatal"
+            ],
+            "security": [
+                "authentication",
+                "login",
+                "logout",
+                "unauthorized",
+                "access denied",
+                "privilege",
+                "sudo",
+                "ssh"
+            ],
+            "system": [
+                "systemd",
+                "kernel",
+                "hardware",
+                "cpu",
+                "memory",
+                "disk",
+                "mount",
+                "filesystem"
+            ],
+            "network": [
+                "network",
+                "interface",
+                "connection",
+                "tcp",
+                "udp",
+                "dns",
+                "dhcp",
+                "firewall"
+            ]
+        }
+    },
+    "alert_rules": {
+        "cpu_high": {
+            "condition": "cpu_usage > 80",
+            "duration": "5m",
+            "severity": "warning",
+            "message": "High CPU usage detected on {host}"
+        },
+        "memory_high": {
+            "condition": "memory_usage > 85",
+            "duration": "3m", 
+            "severity": "warning",
+            "message": "High memory usage detected on {host}"
+        },
+        "disk_full": {
+            "condition": "disk_usage > 90",
+            "duration": "1m",
+            "severity": "critical", 
+            "message": "Disk space critically low on {host}"
+        },
+        "error_spike": {
+            "condition": "error_count > 100 in 5m",
+            "severity": "critical",
+            "message": "High error rate detected from {source}"
+        },
+        "authentication_failure": {
+            "condition": "auth_failures > 10 in 5m",
+            "severity": "warning",
+            "message": "Multiple authentication failures from {host}"
+        }
+    },
+    "parsing_rules": {
+        "syslog": {
+            "pattern": "^<(\\d+)>(\\w+\\s+\\d+\\s+\\d+:\\d+:\\d+)\\s+(\\S+)\\s+(\\S+):\\s*(.*)$",
+            "fields": ["priority", "timestamp", "host", "service", "message"]
+        },
+        "apache": {
+            "pattern": "^(\\S+)\\s+\\S+\\s+\\S+\\s+\\[([^\\]]+)\\]\\s+\"([^\"]+)\"\\s+(\\d+)\\s+(\\S+)",
+            "fields": ["client_ip", "timestamp", "request", "status", "size"]
+        },
+        "nginx": {
+            "pattern": "^(\\S+)\\s+-\\s+\\S+\\s+\\[([^\\]]+)\\]\\s+\"([^\"]+)\"\\s+(\\d+)\\s+(\\S+)\\s+\"([^\"]+)\"\\s+\"([^\"]+)\"",
+            "fields": ["client_ip", "timestamp", "request", "status", "size", "referer", "user_agent"]
+        }
+    }
+}

@@ -1,0 +1,111 @@
+/* CSS Variables for a more maintainable theme - Inspired by user_access.php and image theme */
+:root {
+    --color-bg-primary: #120D2D; /* Darker blue/purple for body start gradient, from image_664133.jpg */
+    --color-bg-secondary: #1C183C; /* Slightly lighter for body end gradient */
+    --color-bg-card: #2A2E45; /* Solid dark background for cards, similar to user_access.php card */
+    --color-border-card: rgba(139, 92, 246, 0.2); /* Softer purple border for cards */
+    --color-text-primary: #ffffff; /* Main text color */
+    --color-text-secondary: #d1d5db; /* Lighter gray for secondary text */
+    --color-purple-gradient-start: #A855F7; /* Purple from user_access.php button-primary */
+    --color-purple-gradient-end: #D946EF; /* Pink from user_access.php button-primary */
+    --color-chart-label: #a0a0b0; /* Light gray for chart labels */
+    --color-chart-grid: rgba(255,255,255,0.08); /* Faint grid lines for charts */
+}
+
+body {
+    background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+    color: var(--color-text-primary);
+    font-family: 'Inter', sans-serif; /* You might need to link this font */
+    font-size: 0.9375rem; /* Reduced base font size slightly (15px) */
+    min-height: 100vh;
+}
+
+/* Unified Card/Panel Styling - Adjusted for new theme */
+.panel {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-card); /* Keep a subtle border */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* More pronounced shadow */
+    border-radius: 1rem; /* Equivalent to rounded-2xl */
+    /* Removed backdrop-filter to make it less transparent, more solid like in image_65eb61.jpg */
+}
+
+/* Button Styling - Re-adjusted for image theme */
+.btn-primary {
+    background: linear-gradient(90deg, var(--color-purple-gradient-start) 0%, var(--color-purple-gradient-end) 100%);
+    transition: all 0.3s ease-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.btn-primary:hover {
+    background: linear-gradient(90deg, #9333EA 0%, #C026D3 100%); /* Slightly darker on hover, from user_access.php */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px);
+}
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+    background-color: transparent; /* Make it transparent */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Light border as seen in image_65eb61.jpg */
+    color: #ffffff;
+    transition: all 0.2s ease-in-out;
+    box-shadow: none; /* No shadow by default */
+}
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
+    box-shadow: none;
+}
+
+/* Table specific styling - Maintained and adjusted for new colors */
+.table-header {
+    background: #2A2E45; /* Solid dark background for table header */
+    border-bottom: 1px solid #4B5563; /* From user_access.php table-row */
+}
+.table-row-item {
+    transition: all 0.2s ease-in-out;
+    background: #2A2E45; /* Solid dark background for table rows */
+    border-bottom: 1px solid #4B5563; /* From user_access.php table-row */
+}
+.table-row-item:hover {
+    background: rgba(139, 92, 246, 0.1); /* Subtle purple tint on hover */
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+/* Last row in table should not have bottom border if it's the last element */
+.table-row-item:last-child {
+    border-bottom: none;
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* SweetAlert2 custom styling for consistency */
+.swal2-popup {
+    background-color: #1E1B3A !important; /* Dark background from user_access.php */
+    color: var(--color-text-primary) !important;
+    border-radius: 1rem !important; /* rounded-2xl equivalent */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(107, 114, 128, 0.5) !important; /* Softer border */
+}
+.swal2-title {
+    color: var(--color-text-primary) !important;
+    font-size: 1.25rem !important; /* text-xl */
+    font-weight: 700 !important;
+}
+.swal2-html-container {
+    color: var(--color-text-secondary) !important;
+    font-size: 0.9375rem !important; /* text-base (15px) */
+}
+.swal2-confirm, .swal2-cancel {
+    padding: 0.5rem 1.25rem !important; /* px-5 py-2 */
+    border-radius: 9999px !important; /* rounded-full */
+    font-weight: 600 !important; /* font-semibold */
+    font-size: 0.875rem !important; /* text-sm */
+}
